@@ -1,0 +1,39 @@
+Design
+
+The first big design decision was language. I decided to implement my website in php mainly out of comfort.
+I learned a lot about the language, and I did not feel that using it restricted any of the functions I had
+envisioned adding. I do not get the feeling that using only php was detrimental, especially because I didn't
+have a need for Ajax.
+
+Another big design decision was the decision to separate my databases into "questions" and "lists" rather
+than just merging the two. I definitely could have done it with merging the two by listing the list title, 
+rather than simply the question_id in the other databases, but for me it was easier to track the question
+by just using the id. The tradeoff was another line of code to look up the actual title of the list using
+the id and a little more runtime.
+
+Another big design decision was the decision to pool a lot of features in the "Create/Edit" page. From a
+usability standpoint, it definitely would make sense to have an edit button only on the "My Lists" page
+because that's the only place where you edit your lists. But I wasn't sure how to pass to php via edit
+button the title of the list being edited while still being able to receive data from an edit form. So,
+I decided just to add that feature to the "Create/Edit" page by allowing users to change their lists simply
+by using the same exact title and adding their new responses.
+
+Another consideration was how the website and databases handle ties. Especially when there are not that many
+users, there would be a lot of ties. For visual consistency's sake, I wanted to only have ten items per list,
+which I forced in the SQL query. Also, the way I implemented the display of lists, ties are simply broken by
+alphabetical order.
+
+One check I had to add to the templates is if the values they were being passed were empty or had values. If
+they were empty, it would cause a PHP syntax error, so I had to check to see if they were empty and if so I 
+displayed a message indicating if that was the case.
+
+A implementation problem I am proud of handling so I want to mention is that I used for and foreach loops
+throughout the website in order to make it much simpler coding wise to type. Although it seems pretty simple,
+I had to learn how to escape PHP in HTML tags, work out the exact algorithms when it got to multi-dimensional
+arrays, etc. I'm glad I got it to work.
+
+The biggest challenge was getting the right SQL statement to find the top ten values. The way my statement as
+it is now work is that selects the rows from each group that are greater than the 10th largest of each group.
+Credit for this statement is given to the makers of 
+http://www.xaprb.com/blog/2006/12/07/how-to-select-the-firstleastmax-row-per-group-in-sql/ and a lot of help
+from StackOverflow.

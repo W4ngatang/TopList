@@ -1,0 +1,38 @@
+Documentation
+
+I made a website, TopList.
+
+WEBSITE STRUCTURE
+The homepage of TopList is a feed of all the questions users have made. It takes all the list topics that any user has
+created a list for and displays the ten most highly ranked responses to each question. Under "Create", users fill in the 
+title and ten responses to the list title. This page serves as a place where users can create new list topics, respond to
+an existing topic, or edit their responses by simply making a new list under a topic that they have already created a list
+for. Under "My Lists", users can view all the lists they have created. Under the "Compare" page, users can look at their
+lists versus the community lists for easy and FUN comparison!
+
+DATABASE STRUCTURE
+TopList employs four databases. First is "users", which is very similar to the CS50 Finance "users" database. Next,
+"questions" is a database of every list topic, which is assigned a unique id, "question_id". The "lists" database stores
+all of the top ten lists that users creates, and therefore is unique over user id and question_id.  Finally the "responses"
+database keeps track of every unique response to a list. Each row is a response some user has given to a list and is unique
+for question_id and the actual response. It keeps track of popularity, called "frequency", which simply assigns 10 pts to
+first place, 1 pt for last place.
+
+HOW TO USE AND HAVE FUN WITH TOPLIST
+Use the "Create/Edit" page to create a list about anything and list ten responses. View the community aggregate of your
+list on the "Home" page and your own response under "My Lists". To get view them side by side for easy and fun comparison,
+go to "Compare". If you see a list on the homepage that you find interesting and want to add your opinion, remember the exact
+title (or copy and paste the title) and go to the "Create/Edit" page and make a list sharing the same exact title. If you want
+to edit your lists, go to "Create/Edit" and create a list sharing the same title as the list you want to edit with the updated
+values.
+
+KNOWN BUGS
+-The first list created must have ten responses. Otherwise, the webpage will complain that there's an offset, meaning it thinks
+that there should be more table elements when there really aren't
+-When editing a list, the previous answers are not correctly deducted from the frequency in its row under the "responses" SQL table
+-If there is a tie, the aggregating SQL statement will pick either all or none. This creates problems when the there is a tie between,
+for example, the 10th and 11th places. The SQL statement won't pick either and return 9 responses rather than 10. This in turn creates
+a problem with the table formatting as the answers are all returned in one giant array. Since there are missing values, all the responses
+get shifted up by however many missing values there are, and the website complains.
+
+Get TopList! Get the app version when I make it!
